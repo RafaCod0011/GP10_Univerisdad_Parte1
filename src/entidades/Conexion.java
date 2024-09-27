@@ -1,13 +1,40 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package entidades;
 
-/**
- *
- * @author Rafa
- */
+import com.sun.jdi.connect.spi.Connection;
+import java.sql.DriverManager;
+
 public class Conexion {
+
+    private static final String URL="jdbc:mysql://localhost/";
+    private static final String DB="GP10_universidadulp";
+    private static final String USUARIO="root";
+    private static final String PASSWORD="";
+    
+    private static Connection connection;
+
+    private Conexion() {}
+
+    public static Connection getConexion(){
+    
+      if(connection == null){
+          try {
+              Class.forName("");
+              //connection = DriveManager.
+              
+              
+          } catch (Exception e) {
+          }
+              
+      }    
+    
+    
+        return connection;
+    }
+    
+    
+    
+    
+    
     
 }

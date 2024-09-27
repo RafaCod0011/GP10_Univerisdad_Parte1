@@ -60,6 +60,6 @@ public class Alumno {
 
     @Override
     public String toString() {
-        return "ID: " + idAlumno + " - Nombre: " + nombre + " Apellido:  " + apellido + " F. Nac.: " + fechaNacimiento +  "ACT: " + activo + '}';
+        return "ID: " + idAlumno + " - Nombre: " + nombre + " Apellido:  " + apellido + " F. Nac.: " + fechaNacimiento +  "ACT: " + activo; 
     }
 }
