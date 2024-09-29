@@ -8,11 +8,8 @@ import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-/**
- *
- * @author Rafa
- */
 public class AlumnoData {
+    
     private Connection con = null;
     
     public AlumnoData(){
