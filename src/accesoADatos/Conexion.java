@@ -1,5 +1,4 @@
-
-package entidades;
+package accesoADatos;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -9,13 +8,12 @@ import javax.swing.JOptionPane;
 
 public class Conexion {
 
-    private static final String URL = "jdbc:mysql://localhost/";
+    private static final String URL = "jdbc:mariadb://localhost/";
     private static final String DB = "gp10_universidadulp";
     private static final String USUARIO = "root";
     private static final String PASSWORD = "";
-
     private static Connection connection;
-
+    
     private Conexion() {}
 
     public static Connection getConexion() {
