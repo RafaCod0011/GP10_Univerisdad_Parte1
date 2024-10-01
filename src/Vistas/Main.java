@@ -10,10 +10,16 @@ public class Main {
 
     public static void main(String[] args) {
         
-        Alumno santi = new Alumno (1212, "Fantini", "Santino", LocalDate.of(2005, 12, 11), true);
+        Alumno loco = new Alumno (228528, "Marcos", "Quiroga", LocalDate.of(2005, 11, 11), true);
         AlumnoData alu = new AlumnoData();
-        //alu.guardarAlumno(santi);
-        alu.modificarAlumno(santi);
+        alu.guardarAlumno(loco);
+        System.out.println(loco.toString());
+      
+        
+        loco.setApellido("Quiroga Ramos");
+        loco.setNombre("Marcos Martin");
+        
+        alu.modificarAlumno(loco);
         
         //Alumno lauti = new Alumno (2121, "Lautaro", "Arguello", LocalDate.of(2005, 4, 1), true);
         //alu.guardarAlumno(lauti);

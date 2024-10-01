@@ -14,15 +14,9 @@ public class Alumno {
     public Alumno (){
     }
     
-    public Alumno(int idAlumno, int dni, String nombre, String apellido, LocalDate fechaNacimiento, boolean activo) {
-        this.idAlumno = idAlumno;
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.fechaNacimiento = fechaNacimiento;
-        this.activo = activo;
-    }
-
+    
     public Alumno(int dni, String nombre, String apellido, LocalDate fechaNacimiento, boolean activo) {
+        this.dni=dni;
         this.nombre = nombre;
         this.apellido = apellido;
         this.fechaNacimiento = fechaNacimiento;
@@ -79,6 +73,8 @@ public class Alumno {
 
     @Override
     public String toString() {
-        return "ID: " + idAlumno + " - Nombre: " + nombre + " Apellido:  " + apellido + " F. Nac.: " + fechaNacimiento +  "ACT: " + activo; 
+        return "Alumno{" + "idAlumno=" + idAlumno + ", dni=" + dni + ", nombre=" + nombre + ", apellido=" + apellido + ", fechaNacimiento=" + fechaNacimiento + ", activo=" + activo + '}';
     }
+
+
 }

@@ -9,6 +9,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import java.sql.SQLIntegrityConstraintViolationException;
+
 
 public class AlumnoData {
     
@@ -24,8 +26,8 @@ public class AlumnoData {
                 + "VALUES(?, ?, ?, ?, ?)";
         
         try {
-            PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS); // esto deberia solucionarse cuando se cree la tabla sql
-            ps.setInt(1,alumno.getIdAlumno());
+            PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS); 
+            ps.setInt(1,alumno.getDni());
             ps.setString(2, alumno.getApellido());
             ps.setString(3, alumno.getNombre());
             ps.setDate(4, java.sql.Date.valueOf(alumno.getFechaNacimiento()));
@@ -34,33 +36,51 @@ public class AlumnoData {
             
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()){
-                alumno.setIdAlumno(rs.getInt(1));
+                alumno.setIdAlumno(rs.getInt(1)); // Le asignamos el ID
                 JOptionPane.showMessageDialog(null, "Alumno guardado correctamente");
             }
             ps.close();
-            
+        } catch (SQLIntegrityConstraintViolationException ex) {
+            JOptionPane.showMessageDialog(null, "El DNI ya existe.");
         }catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Alumno");
         }
     }
     
     public void modificarAlumno (Alumno alumno) {
-        String sql= "UPDATE alumno SET dni= ?, apellido = ?, nombre = ?, fechaNacimiento = ?"
+
+       
+        if (alumno.getIdAlumno() == 0) {
+            JOptionPane.showMessageDialog(null, "ID de Alumno no válido.");
+            return;
+        }
+
+
+        
+        String sql= "UPDATE alumno SET dni= ?, apellido = ?, nombre = ?, fechaNacimiento = ?, estado = ? "
                 + "WHERE idAlumno = ?";
         
         try {
-        PreparedStatement ps = con.prepareStatement(sql); // esto deberia solucionarse cuando se cree la tabla sql
-        ps.setInt(1,alumno.getIdAlumno());
-        ps.setString(2, alumno.getApellido());
-        ps.setString(3, alumno.getNombre());
-        ps.setDate(4, java.sql.Date.valueOf(alumno.getFechaNacimiento()));
-        ps.setBoolean(5, alumno.isActivo());
-        int exito = ps.executeUpdate();
-        if (exito == 1){
-            JOptionPane.showMessageDialog(null,"Alumno Modificado Correctamente");
-        }
-                
+            
+            PreparedStatement ps = con.prepareStatement(sql); 
+            ps.setInt(1,alumno.getDni());
+            ps.setString(2, alumno.getApellido());
+            ps.setString(3, alumno.getNombre());
+            ps.setDate(4, java.sql.Date.valueOf(alumno.getFechaNacimiento()));
+            ps.setBoolean(5, alumno.isActivo());
+            ps.setInt(6,alumno.getIdAlumno());     
+
+            int exito = ps.executeUpdate();
+
+            if (exito == 1){
+                JOptionPane.showMessageDialog(null,"Alumno Modificado Correctamente");
+            }
+            
+        } catch (SQLIntegrityConstraintViolationException ex) {
+            JOptionPane.showMessageDialog(null, "El DNI ya existe.");
+            
         } catch (SQLException ex) {
+            ex.printStackTrace(); 
             JOptionPane.showMessageDialog(null,"Error al acceder a la tabla Alumno");
         }
     }
