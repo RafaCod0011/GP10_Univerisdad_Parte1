@@ -12,6 +12,7 @@ public class Main {
         
         Alumno loco = new Alumno (228528, "Marcos", "Quiroga", LocalDate.of(2005, 11, 11), true);
         AlumnoData alu = new AlumnoData();
+        
         alu.guardarAlumno(loco);
         System.out.println(loco.toString());
       
